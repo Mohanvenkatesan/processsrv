@@ -1,0 +1,73 @@
+apply plugin: 'war'
+apply plugin: 'jetty'
+apply plugin: 'eclipse-wtp'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+buildscript {
+
+	repositories {
+		maven {
+			url "http://oneartifactory.verizon.com/artifactory/plugins-release"
+		}
+		maven {
+			url "http://oneartifactory.verizon.com/artifactory/plugins-snapshot"
+		}
+		maven {
+			url "http://oneartifactory.verizon.com/artifactory/jcenter"
+		}
+		maven {
+			url "http://oneartifactory.verizon.com/artifactory/F86V_WFM"
+			credentials {
+				username "kumaan9"
+				password "AP6sxxwqeavob42JmqNWwMfEwce"
+			}
+		}
+	}
+
+
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.3.RELEASE")
+	}
+}
+
+repositories {
+	maven {
+		url "http://oneartifactory.verizon.com/artifactory/libs-release-local"
+	}
+	maven {
+		url "http://oneartifactory.verizon.com/artifactory/libs-snapshot-local"
+	}
+	maven {
+		url "http://oneartifactory.verizon.com/artifactory/jcenter"
+	}
+	maven {
+		url "http://oneartifactory.verizon.com/artifactory/F86V_WFM"
+		credentials {
+			username "kumaan9"
+			password "AP6sxxwqeavob42JmqNWwMfEwce"
+		}
+	}
+}
+
+dependencies {
+   providedCompile 'javax.servlet:servlet-api:2.5'
+   compile ('org.springframework:spring-web:4.3.7.RELEASE')
+   compile ('org.springframework:spring-webmvc:4.3.7.RELEASE')
+  // compile group: 'de.codecentric', name: 'spring-boot-admin-starter-client', version: '1.3.5'
+  compile('org.springframework.boot:spring-boot-actuator:1.5.2.RELEASE')
+  // https://mvnrepository.com/artifact/org.hibernate/hibernate-validator
+  compile group: 'org.hibernate', name: 'hibernate-validator', version: '4.3.2.Final'
+  
+  
+  //compile('org.springframework.boot:spring-boot-actuator:1.2.5.RELEASE'){
+    //exclude group: 'org.springframework.boot', module:'spring-boot-starter-logging'}
+   //compile group: 'de.codecentric', name: 'spring-boot-admin-starter-client', version: '0.5.0.M6'
+   //compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.4.3.RELEASE'
+   
+   runtime 'javax.servlet:jstl:1.1.2'
+}
+
+/* Change context path (base url). otherwise defaults to name of project */
+//jettyRunWar.contextPath = '' 
